@@ -2,13 +2,13 @@ document.querySelectorAll('a[href="#read"]').forEach((link) => {
   link.addEventListener('click', (event) => event.preventDefault());
 });
 
-document.querySelectorAll('a[href="index.html"], a[href="archive.html"], a[href="people.html"], a[href="people-volume-two.html"], a[href="places.html"], a[href^="factions"]').forEach((link) => {
+document.querySelectorAll('a[href="index.html"], a[href="archive.html"], a[href="people.html"], a[href="people-volume-two.html"], a[href="places.html"], a[href^="factions"], a[href^="events"]').forEach((link) => {
   link.addEventListener('click', (event) => {
     if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     event.preventDefault();
     const destination = link.getAttribute('href').split('#')[0];
-    const isArchivePage = ['archive.html', 'people.html', 'people-volume-two.html', 'places.html', 'factions.html', 'factions-guilds.html', 'factions-secret-societies.html', 'factions-criminal-networks.html'].includes(destination);
-    const isDossierPage = ['people.html', 'people-volume-two.html', 'places.html', 'factions.html', 'factions-guilds.html', 'factions-secret-societies.html', 'factions-criminal-networks.html'].includes(destination);
+    const isArchivePage = ['archive.html', 'people.html', 'people-volume-two.html', 'places.html', 'factions.html', 'factions-guilds.html', 'factions-secret-societies.html', 'factions-criminal-networks.html', 'events.html', 'events-volume-two.html', 'events-volume-three.html'].includes(destination);
+    const isDossierPage = ['people.html', 'people-volume-two.html', 'places.html', 'factions.html', 'factions-guilds.html', 'factions-secret-societies.html', 'factions-criminal-networks.html', 'events.html', 'events-volume-two.html', 'events-volume-three.html'].includes(destination);
     const isArchiveToPaper = destination === 'index.html' && document.querySelector('.archive-shell');
     const isPaperToArchive = destination === 'archive.html' && document.querySelector('.masthead');
     if (isArchivePage) sessionStorage.setItem('archive-transition', 'archive-entry');
@@ -29,6 +29,7 @@ if (archiveTransition === 'archive-entry') {
   if (document.body.classList.contains('people-page')) document.body.classList.add('is-person-dossier-arrival');
   if (document.body.classList.contains('places-page')) document.body.classList.add('is-place-dossier-arrival');
   if (document.body.classList.contains('factions-page')) document.body.classList.add('is-faction-dossier-arrival');
+  if (document.body.classList.contains('events-page')) document.body.classList.add('is-event-dossier-arrival');
   if (document.querySelector('.archive-shell')) document.body.classList.add('is-archive-arrival');
   sessionStorage.removeItem('archive-transition');
 }
@@ -39,7 +40,7 @@ if (archiveTransition === 'paper-entry') {
   sessionStorage.removeItem('archive-transition');
 }
 
-document.querySelectorAll('.person-drawer, .place-drawer, .faction-drawer').forEach((drawer) => {
+document.querySelectorAll('.person-drawer, .place-drawer, .faction-drawer, .event-drawer').forEach((drawer) => {
   const summary = drawer.querySelector('summary');
   const toggle = drawer.querySelector('.drawer-toggle');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
