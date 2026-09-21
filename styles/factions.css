@@ -1,0 +1,98 @@
+.factions-shell { max-width: 1540px; }
+.faction-double-rule { height: 4px; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); }
+.faction-masthead { padding: 19px 0 12px; text-align: center; }
+.faction-kicker { margin: 9px 0 -3px; color: var(--accent); font: 600 13px var(--font-ui); letter-spacing: .2em; }
+.faction-masthead h1 { margin: 0; font: 700 clamp(50px, 4.8vw, 72px) / .82 var(--display); letter-spacing: -.07em; }
+.faction-masthead h1 em { color: var(--accent); font: 400 1em var(--display); }
+.faction-edition-line { display: grid; grid-template-columns: 1fr 1.7fr 1fr; align-items: center; margin: 8px 0 2px; font-size: 14px; }
+.faction-edition-line p, .faction-edition-line a { margin: 0; }
+.faction-edition-line a { color: var(--ink); text-align: left; font-weight: 900; letter-spacing: .04em; }
+.faction-edition-line .next-register { width: 100%; justify-self: stretch; color: var(--accent); text-align: right; }
+.faction-edition-line p { color: var(--muted); font: 13px var(--font-ui); letter-spacing: .025em; }
+
+.faction-drawers { padding-bottom: 90px; border-top: 4px solid var(--ink); }
+.faction-drawer { border-bottom: 1px solid var(--rule); }
+.faction-drawer summary { position: relative; display: grid; grid-template-columns: 128px minmax(280px, 1.25fr) 1fr auto; gap: 24px; align-items: center; min-height: 91px; padding: 18px 20px 18px 0; cursor: pointer; list-style: none; transition: transform 340ms cubic-bezier(.18, .8, .25, 1); }
+.faction-drawer summary::-webkit-details-marker { display: none; }
+.faction-drawer summary::before { content: ""; position: absolute; top: -4px; bottom: 0; left: -10px; width: 5px; background: var(--accent); transform: scaleY(0); transform-origin: center; transition: transform 260ms ease; }
+.drawer-number { color: var(--accent); font: 700 15px var(--font-ui); letter-spacing: .06em; transition: color 200ms ease; }
+.drawer-toggle { color: var(--muted); font: 13px var(--font-ui); white-space: nowrap; transition: color 200ms ease; }
+.faction-drawer summary h2 { margin: 0; font-size: 32px; line-height: 1; letter-spacing: -.06em; transition: color 200ms ease; }
+.faction-drawer summary p { margin: 0; color: #45423c; font-size: 17px; }
+.faction-drawer[open] { border-bottom-color: var(--ink); background: linear-gradient(90deg, rgba(229, 224, 213, .88), rgba(229, 224, 213, .32) 68%, transparent); }
+.faction-drawer[open] summary { transform: translateX(10px); }
+.faction-drawer[open] summary::before { transform: scaleY(1); }
+.faction-drawer.is-closing summary { transform: translateX(0); }
+.faction-drawer.is-closing summary::before { transform: scaleY(0); }
+.faction-drawer[open] .drawer-number { color: var(--ink); }
+.faction-drawer[open] .drawer-toggle, .faction-drawer[open] summary h2 { color: var(--accent); }
+
+.faction-file { max-height: 12000px; margin: 0 24px 34px 20px; padding: 27px 0 0; overflow: hidden; border-top: 1px solid var(--ink); transition: max-height 520ms cubic-bezier(.2, .76, .24, 1), margin 420ms ease, padding 420ms ease, border-color 220ms ease, opacity 220ms ease; }
+.faction-pending-file { min-height: 94px; }
+.faction-pending-file p { margin: 0; color: var(--accent); font: 700 26px var(--display); }
+.faction-drawer.is-opening .faction-file { animation: faction-file-out 480ms cubic-bezier(.18, .8, .25, 1) both; }
+.faction-drawer.is-closing .faction-file { max-height: 0; margin-bottom: 0; padding-top: 0; border-top-color: transparent; opacity: 0; animation: faction-file-return 360ms ease-in both; }
+.faction-file-lead { display: grid; grid-template-columns: minmax(200px, .45fr) minmax(480px, 1.55fr); gap: 42px; align-items: end; padding-bottom: 30px; }
+.faction-emblem { display: grid; width: min(100%, 220px); aspect-ratio: 1; place-items: center; margin: 0; padding: 17px; border: 1px solid var(--ink); background: rgba(229, 224, 213, .38); }
+.faction-emblem img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.file-identity { margin: 0 0 11px; color: var(--accent); font: 700 14px var(--font-ui); letter-spacing: .055em; }
+.faction-file-lead h3 { max-width: 790px; margin: 0 0 17px; font-size: clamp(42px, 4.1vw, 64px); line-height: .9; letter-spacing: -.075em; }
+.faction-file-lead h3 small { display: block; margin-top: 10px; color: var(--accent); font: 400 clamp(20px, 2vw, 29px) var(--display); letter-spacing: -.035em; }
+.faction-deck { max-width: 800px; margin: 0; font-size: 19px; line-height: 1.75; }
+.faction-dossier-link { display: inline-block; margin-top: 18px; color: var(--accent); border-bottom: 1px solid var(--accent); font: 700 15px var(--font-ui); letter-spacing: .04em; transition: color 180ms ease, border-color 180ms ease; }
+.faction-dossier-link:hover { color: var(--ink); border-bottom-color: var(--ink); }
+
+.faction-section { padding: 26px 0 29px; border-top: 1px solid var(--ink); }
+.faction-section > h4 { display: flex; align-items: baseline; gap: 17px; margin: 0 0 20px; color: var(--accent); font: 700 22px / 1.15 var(--body); letter-spacing: -.035em; }
+.section-index { display: inline-block; min-width: 30px; color: var(--ink); font: 700 13px var(--font-ui); letter-spacing: .06em; }
+.faction-register { margin: 0; border-top: 1px solid var(--rule); }
+.faction-register div { display: grid; grid-template-columns: minmax(170px, .28fr) 1fr; gap: 24px; min-height: 54px; padding: 12px 0; border-bottom: 1px solid var(--rule); }
+.faction-register dt { margin: 0; color: var(--accent); font: 700 15px var(--font-ui); letter-spacing: .055em; }
+.faction-register dd { margin: 0; color: #45423c; font-size: 17px; line-height: 1.5; }
+.faction-ledger { display: grid; grid-template-columns: 1.25fr .75fr; gap: 44px; }
+.faction-ledger p { margin: 0; padding-top: 3px; color: #37342f; font-size: 18px; line-height: 1.8; }
+.faction-ledger p + p { padding-left: 28px; border-left: 1px solid var(--rule); }
+.faction-record-list { border-top: 1px solid var(--rule); }
+.faction-record { padding: 15px 0 16px; border-bottom: 1px solid var(--rule); }
+.faction-record header { display: flex; align-items: baseline; gap: 13px; }
+.faction-record h5 { margin: 0; color: var(--accent); font: 700 20px var(--body); letter-spacing: -.035em; }
+.faction-record header span, .faction-record header b { color: var(--muted); font: 13px var(--font-ui); font-weight: 600; letter-spacing: .06em; }
+.faction-record header b { margin-left: auto; color: var(--accent); }
+.faction-record p { max-width: 980px; margin: 9px 0 0; color: #37342f; font-size: 17px; line-height: 1.75; }
+.location-clues { max-width: 980px; margin: 15px 0 1px; padding: 11px 15px 12px; border-left: 3px solid var(--accent); background: rgba(229, 224, 213, .48); }
+.location-clues > span { color: var(--accent); font: 700 13px var(--font-ui); letter-spacing: .065em; }
+.location-clues ul { margin: 7px 0 0; padding: 0; list-style: none; }
+.location-clues li { padding: 4px 0 4px 18px; color: #45423c; font-size: 14px; line-height: 1.65; }
+.location-clues li::before { content: "·"; display: inline-block; width: 18px; margin-left: -18px; color: var(--accent); font-weight: 700; }
+.faction-supplement { padding-bottom: 4px; }
+.faction-supplement ul { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--rule); }
+.faction-supplement li { padding: 12px 0 12px 44px; border-bottom: 1px solid var(--rule); color: #37342f; font-size: 17px; line-height: 1.7; }
+.faction-supplement li::before { content: "+"; display: inline-block; width: 28px; margin-left: -44px; color: var(--accent); font: 700 21px var(--display); text-align: center; }
+
+@keyframes faction-file-out { from { opacity: 0; transform: translateY(-15px) scaleY(.975); transform-origin: top; } to { opacity: 1; transform: translateY(0) scaleY(1); } }
+@keyframes faction-file-return { to { opacity: 0; transform: translateY(-12px) scaleY(.98); transform-origin: top; } }
+@media (prefers-reduced-motion: no-preference) {
+  .factions-page.is-faction-dossier-arrival .faction-masthead { animation: faction-heading-arrival 280ms ease-out both; }
+  .factions-page.is-faction-dossier-arrival .faction-drawers { animation: faction-drawer-arrival 520ms cubic-bezier(.16, .84, .28, 1) 80ms both; transform-origin: top; }
+  @keyframes faction-heading-arrival { from { opacity: 0; transform: translateY(-12px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes faction-drawer-arrival { from { opacity: 0; clip-path: inset(0 0 100% 0); transform: translateY(-24px) scaleY(.93); } to { opacity: 1; clip-path: inset(0 0 0 0); transform: translateY(0) scaleY(1); } }
+}
+@media (max-width: 900px) {
+  .faction-file-lead, .faction-ledger { grid-template-columns: 1fr; gap: 26px; }
+  .faction-drawer summary { grid-template-columns: 100px 1.2fr 1fr; gap: 15px; }
+  .faction-drawer .drawer-toggle { display: none; }
+  .faction-emblem { width: 175px; }
+  .faction-ledger p + p { padding-left: 0; border-left: 0; }
+}
+@media (max-width: 680px) {
+  .faction-masthead h1 { font-size: clamp(42px, 12vw, 70px); }
+  .faction-edition-line { grid-template-columns: 1fr 1fr; }
+  .faction-edition-line p { display: none; }
+  .faction-drawer summary { grid-template-columns: 82px 1fr; min-height: auto; padding: 20px 0; }
+  .faction-drawer summary p { grid-column: 2; }
+  .faction-drawer summary h2 { font-size: 28px; }
+  .faction-file { margin: 0 0 24px 12px; }
+  .faction-file-lead { gap: 21px; }
+  .faction-emblem { width: 130px; }
+  .faction-register div { grid-template-columns: 1fr; gap: 5px; }
+}

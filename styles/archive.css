@@ -35,14 +35,16 @@
 .entry-people .entry-number, .entry-places .entry-number { font-size: 19px; }
 .entry-people > a, .entry-places > a { grid-template-columns: 55px 1fr; align-items: baseline; padding-bottom: 3px; }
 .entry-people .entry-heading h3, .entry-places .entry-heading h3 { font-size: clamp(30px, 2.25vw, 37px); }
-.entry-people ul, .entry-places ul { display: block; margin: 18px 0 0 58px; padding: 0 0 2px; list-style: none; border-top: 1px solid var(--rule); }
-.entry-people li, .entry-places li { display: flex; justify-content: flex-start; align-items: center; gap: 10px; min-height: 35px; padding: 6px 0; border-top: 1px solid rgba(28, 27, 25, .16); color: var(--ink); font-size: 15px; line-height: 1.4; letter-spacing: .04em; }
-.entry-people li::before, .entry-places li::before { display: inline-block; width: 31px; margin-right: 8px; color: var(--muted); font: 700 9px var(--font-ui); letter-spacing: .1em; }
-.entry-people li:nth-child(1)::before, .entry-places li:nth-child(1)::before { content: "01"; }
-.entry-people li:nth-child(2)::before, .entry-places li:nth-child(2)::before { content: "02"; }
-.entry-people li:nth-child(3)::before, .entry-places li:nth-child(3)::before { content: "03"; }
-.entry-people li a, .entry-places li a { color: var(--accent); }
-.entry-people li a:hover, .entry-places li a:hover { color: var(--ink); }
+.entry-factions { padding-top: 14px; }
+.entry-people ul, .entry-places ul, .entry-factions ul { display: block; margin: 18px 0 0 58px; padding: 0 0 2px; list-style: none; border-top: 1px solid var(--rule); }
+.entry-people li, .entry-places li, .entry-factions li { display: flex; justify-content: flex-start; align-items: center; gap: 10px; min-height: 35px; padding: 6px 0; border-top: 1px solid rgba(28, 27, 25, .16); color: var(--ink); font-size: 15px; line-height: 1.4; letter-spacing: .04em; }
+.entry-people li::before, .entry-places li::before, .entry-factions li::before { display: inline-block; width: 31px; margin-right: 8px; color: var(--muted); font: 700 9px var(--font-ui); letter-spacing: .1em; }
+.entry-people li:nth-child(1)::before, .entry-places li:nth-child(1)::before, .entry-factions li:nth-child(1)::before { content: "01"; }
+.entry-people li:nth-child(2)::before, .entry-places li:nth-child(2)::before, .entry-factions li:nth-child(2)::before { content: "02"; }
+.entry-people li:nth-child(3)::before, .entry-places li:nth-child(3)::before, .entry-factions li:nth-child(3)::before { content: "03"; }
+.entry-factions li:nth-child(4)::before { content: "04"; }
+.entry-people li a, .entry-places li a, .entry-factions li a { color: var(--accent); }
+.entry-people li a:hover, .entry-places li a:hover, .entry-factions li a:hover { color: var(--ink); }
 
 .entry-clues, .entry-timeline { padding-top: 14px; }
 
