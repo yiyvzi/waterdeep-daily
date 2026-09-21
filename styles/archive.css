@@ -45,6 +45,7 @@
 :is(.entry-factions, .entry-events) li:nth-child(4)::before { content: "04"; }
 :is(.entry-people, .entry-places, .entry-factions, .entry-events) li a { color: var(--accent); }
 :is(.entry-people, .entry-places, .entry-factions, .entry-events) li a:hover { color: var(--ink); }
+:is(.entry-people, .entry-places, .entry-factions, .entry-events) li [aria-disabled="true"] { color: var(--muted); opacity: .72; }
 
 @media (prefers-reduced-motion: no-preference) {
   .is-archive-arrival .archive-masthead { animation: archive-heading-arrival 300ms ease-out both; }

@@ -21,6 +21,14 @@
 html { overflow-y: scroll; scroll-behavior: smooth; scrollbar-gutter: stable; }
 body { margin: 0; color: var(--ink); background: var(--paper); font-family: var(--body); }
 a { color: inherit; text-decoration: none; }
+.archive-reference { color: var(--accent); border-bottom: 1px solid transparent; transition: color 180ms ease, border-color 180ms ease; }
+.archive-reference:hover { color: var(--ink); border-bottom-color: currentColor; }
+:is(.event-entity-list, .faction-record-list, .campaign-grid, .contact-ledgers) .archive-reference { border-bottom-color: currentColor; }
+a.is-link-activating { position: relative; animation: ink-link-press 380ms cubic-bezier(.2, .72, .28, 1) both; }
+a.is-link-activating::before { content: ""; position: absolute; right: 0; bottom: -.25em; left: 0; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: left; animation: ink-link-trace 380ms cubic-bezier(.2, .72, .28, 1) both; }
+@keyframes ink-link-press { 0% { filter: brightness(.72); opacity: .82; } 40% { filter: brightness(1); opacity: 1; } 100% { filter: brightness(1); opacity: 1; } }
+@keyframes ink-link-trace { 0% { opacity: 0; transform: scaleX(0); } 34% { opacity: .9; transform: scaleX(1); } 100% { opacity: 0; transform: scaleX(.82); } }
+@media (prefers-reduced-motion: reduce) { a.is-link-activating, a.is-link-activating::before { animation: none; } }
 .page-shell { max-width: 1440px; margin: auto; padding: 0 3.5vw; overflow: hidden; }
 
 .site-header {
@@ -991,7 +999,13 @@ a:focus-visible {
 @media (prefers-reduced-motion: no-preference) {
   body { animation: page-arrival 280ms cubic-bezier(.2, .7, .25, 1) both; }
   body.is-page-leaving { pointer-events: none; animation: page-departure 170ms ease-in both; }
+  body.is-page-leaving.is-link-page-leaving { overflow: hidden; animation: none; }
+  body.is-link-page-leaving .page-shell { animation: archive-link-departure 360ms cubic-bezier(.5, 0, .72, .32) both; transform-origin: center; }
+  body.is-archive-link-arrival { overflow: hidden; animation: none; }
+  body.is-archive-link-arrival .page-shell { animation: archive-link-arrival 440ms cubic-bezier(.16, .82, .25, 1) both; transform-origin: center; }
   body.is-person-page-leaving .page-shell { animation: dossier-leave 170ms cubic-bezier(.55, 0, 1, .45) both; transform-origin: center top; }
+  body.is-link-page-leaving.is-person-page-leaving .page-shell { animation: archive-link-departure 360ms cubic-bezier(.5, 0, .72, .32) both; transform-origin: center; }
+  :is(.person-drawer, .place-drawer, .faction-drawer, .event-drawer).is-linked-target[open] > summary { animation: linked-dossier-arrival 680ms cubic-bezier(.16, .82, .25, 1) both; }
   body.is-page-leaving.is-archive-to-paper-leaving { animation: none; overflow: hidden; }
   body.is-archive-to-paper-leaving .page-shell { animation: archive-to-paper-fold 430ms cubic-bezier(.55, 0, .74, .35) both; transform-origin: center; }
   body.is-page-leaving.is-paper-to-archive-leaving { animation: none; overflow: hidden; }
@@ -1005,6 +1019,9 @@ a:focus-visible {
   @keyframes page-arrival { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: translateY(0); } }
   @keyframes page-departure { to { opacity: 0; transform: translateY(-5px); } }
   @keyframes dossier-leave { to { opacity: 0; transform: translateY(-18px) scaleY(.94); } }
+  @keyframes archive-link-departure { 0% { clip-path: inset(0 0 0 0); opacity: 1; transform: translateY(0) scaleX(1); } 56% { clip-path: inset(10% 0 10% 0); opacity: 1; transform: translateY(-2px) scaleX(.985); } 100% { clip-path: inset(49% 0 49% 0); opacity: 0; transform: translateY(-7px) scaleX(.9); } }
+  @keyframes archive-link-arrival { 0% { clip-path: inset(49% 0 49% 0); opacity: 0; transform: translateY(7px) scaleX(.9); } 56% { clip-path: inset(10% 0 10% 0); opacity: 1; transform: translateY(2px) scaleX(.985); } 100% { clip-path: inset(0 0 0 0); opacity: 1; transform: translateY(0) scaleX(1); } }
+  @keyframes linked-dossier-arrival { 0% { background: rgba(154, 70, 47, 0); box-shadow: inset 0 0 0 0 rgba(154, 70, 47, 0); transform: translateX(-14px); } 42% { background: rgba(154, 70, 47, .11); box-shadow: inset 5px 0 0 var(--accent); transform: translateX(12px); } 100% { background: rgba(154, 70, 47, 0); box-shadow: inset 0 0 0 0 rgba(154, 70, 47, 0); transform: translateX(10px); } }
   @keyframes archive-to-paper-fold { 0% { clip-path: inset(0 0 0 0); opacity: 1; transform: scaleX(1); } 68% { clip-path: inset(41% 0 41% 0); opacity: 1; transform: scaleX(.96); } 100% { clip-path: inset(49.5% 0 49.5% 0); opacity: 0; transform: scaleX(.62); } }
   @keyframes newspaper-sheet-fold { 0% { clip-path: inset(0 0 0 0); opacity: 1; transform: scaleX(1); } 65% { clip-path: inset(39% 0 39% 0); opacity: 1; transform: scaleX(.96); } 100% { clip-path: inset(49.5% 0 49.5% 0); opacity: 0; transform: scaleX(.62); } }
   @keyframes newspaper-content-fold { to { clip-path: inset(0 0 100% 0); opacity: 0; transform: translateY(-20px); } }

@@ -2,7 +2,18 @@ document.querySelectorAll('a[href="#read"]').forEach((link) => {
   link.addEventListener('click', (event) => event.preventDefault());
 });
 
-document.querySelectorAll('a[href="index.html"], a[href="archive.html"], a[href="people.html"], a[href="people-volume-two.html"], a[href="places.html"], a[href^="factions"], a[href^="events"]').forEach((link) => {
+document.addEventListener('click', (event) => {
+  if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+  const link = event.target instanceof Element ? event.target.closest('a[href]') : null;
+  if (!link || link.getAttribute('href') === '#read') return;
+  link.classList.remove('is-link-activating');
+  void link.offsetWidth;
+  link.classList.add('is-link-activating');
+  window.setTimeout(() => link.classList.remove('is-link-activating'), 400);
+}, true);
+
+document.querySelectorAll('a[href]').forEach((link) => {
+  if (!/^[\w-]+\.html(?:#.*)?$/.test(link.getAttribute('href'))) return;
   link.addEventListener('click', (event) => {
     if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     event.preventDefault();
@@ -14,11 +25,13 @@ document.querySelectorAll('a[href="index.html"], a[href="archive.html"], a[href=
     if (isArchivePage) sessionStorage.setItem('archive-transition', 'archive-entry');
     if (isArchiveToPaper) sessionStorage.setItem('archive-transition', 'paper-entry');
     document.body.classList.add('is-page-leaving');
+    document.body.classList.add('is-link-page-leaving');
     if (isDossierPage) document.body.classList.add('is-person-page-leaving');
     if (isArchiveToPaper) document.body.classList.add('is-archive-to-paper-leaving');
     if (isPaperToArchive) document.body.classList.add('is-paper-to-archive-leaving');
     const hasArchivePaperTransition = isArchiveToPaper || isPaperToArchive;
-    const departureDuration = hasArchivePaperTransition && !window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 430 : 170;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const departureDuration = reducedMotion ? 1 : hasArchivePaperTransition ? 430 : 360;
     window.setTimeout(() => { window.location.href = link.href; }, departureDuration);
   });
 });
@@ -26,6 +39,7 @@ document.querySelectorAll('a[href="index.html"], a[href="archive.html"], a[href=
 const archiveTransition = sessionStorage.getItem('archive-transition');
 
 if (archiveTransition === 'archive-entry') {
+  document.body.classList.add('is-archive-link-arrival');
   if (document.body.classList.contains('people-page')) document.body.classList.add('is-person-dossier-arrival');
   if (document.body.classList.contains('places-page')) document.body.classList.add('is-place-dossier-arrival');
   if (document.body.classList.contains('factions-page')) document.body.classList.add('is-faction-dossier-arrival');
@@ -73,3 +87,18 @@ document.querySelectorAll('.person-drawer, .place-drawer, .faction-drawer, .even
     window.setTimeout(() => drawer.classList.remove('is-opening'), duration);
   });
 });
+
+const openLinkedDrawer = () => {
+  const drawer = document.getElementById(window.location.hash.slice(1));
+  if (!drawer || !drawer.matches('.person-drawer, .place-drawer, .faction-drawer, .event-drawer')) return;
+  drawer.open = true;
+  const toggle = drawer.querySelector('.drawer-toggle');
+  if (toggle) toggle.textContent = '收起档案 −';
+  drawer.classList.remove('is-linked-target');
+  void drawer.offsetWidth;
+  drawer.classList.add('is-linked-target');
+  window.setTimeout(() => drawer.classList.remove('is-linked-target'), 680);
+};
+
+openLinkedDrawer();
+window.addEventListener('hashchange', openLinkedDrawer);
