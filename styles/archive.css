@@ -42,7 +42,7 @@
 :is(.entry-people, .entry-places, .entry-factions, .entry-events) li:nth-child(1)::before { content: "01"; }
 :is(.entry-people, .entry-places, .entry-factions, .entry-events) li:nth-child(2)::before { content: "02"; }
 :is(.entry-people, .entry-places, .entry-factions, .entry-events) li:nth-child(3)::before { content: "03"; }
-.entry-factions li:nth-child(4)::before { content: "04"; }
+:is(.entry-factions, .entry-events) li:nth-child(4)::before { content: "04"; }
 :is(.entry-people, .entry-places, .entry-factions, .entry-events) li a { color: var(--accent); }
 :is(.entry-people, .entry-places, .entry-factions, .entry-events) li a:hover { color: var(--ink); }
 

@@ -7,6 +7,7 @@
 .event-edition-line { display: grid; grid-template-columns: 1fr 1.7fr 1fr; align-items: center; margin: 8px 0 2px; font-size: 14px; }
 .event-edition-line p, .event-edition-line a { margin: 0; }
 .event-edition-line a { color: var(--ink); font-weight: 900; letter-spacing: .04em; }
+.event-edition-line > a:first-child { text-align: left; }
 .event-edition-line .next-register { width: 100%; color: var(--accent); text-align: right; }
 .event-edition-line p { color: var(--muted); font: 13px var(--font-ui); letter-spacing: .025em; }
 
