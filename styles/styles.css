@@ -1185,7 +1185,8 @@ a:focus-visible {
   .site-footer span:last-child { margin-left: 0; }
 }
 @media (max-width: 430px) {
-  .top-nav a:nth-child(2) { display: none; }
+  .top-nav { gap: 10px; font-size: 11px; letter-spacing: .04em; white-space: nowrap; }
+  .menu-button { font-size: 11px; white-space: nowrap; }
   .lead-head h2 { font-size: 54px; }
   .lead-note { display: none; }
   .briefs { grid-template-columns: 52px 1fr; }
