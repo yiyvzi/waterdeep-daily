@@ -12,9 +12,9 @@
 
 .faction-drawers { padding-bottom: 90px; border-top: 4px solid var(--ink); }
 .faction-drawer { border-bottom: 1px solid var(--rule); }
-.faction-drawer summary { position: relative; display: grid; grid-template-columns: 128px minmax(280px, 1.25fr) 1fr auto; gap: 24px; align-items: center; min-height: 91px; padding: 18px 20px 18px 0; cursor: pointer; list-style: none; transition: transform 340ms cubic-bezier(.18, .8, .25, 1); }
+.faction-drawer summary { position: relative; display: grid; grid-template-columns: 128px minmax(280px, 1.25fr) 1fr auto; gap: 24px; align-items: center; min-height: 91px; padding: 18px 20px 18px 0; cursor: pointer; list-style: none; transition: transform 420ms cubic-bezier(.18, .8, .25, 1); }
 .faction-drawer summary::-webkit-details-marker { display: none; }
-.faction-drawer summary::before { content: ""; position: absolute; top: -4px; bottom: 0; left: -10px; width: 5px; background: var(--accent); transform: scaleY(0); transform-origin: center; transition: transform 260ms ease; }
+.faction-drawer summary::before { content: ""; position: absolute; top: -4px; bottom: 0; left: -10px; width: 5px; background: var(--accent); transform: scaleY(0); transform-origin: center; transition: transform 320ms ease; }
 .drawer-number { color: var(--accent); font: 700 15px var(--font-ui); letter-spacing: .06em; transition: color 200ms ease; }
 .drawer-toggle { color: var(--muted); font: 13px var(--font-ui); white-space: nowrap; transition: color 200ms ease; }
 .faction-drawer summary h2 { margin: 0; font-size: 32px; line-height: 1; letter-spacing: -.06em; transition: color 200ms ease; }
@@ -22,16 +22,16 @@
 .faction-drawer[open] { border-bottom-color: var(--ink); background: linear-gradient(90deg, rgba(229, 224, 213, .88), rgba(229, 224, 213, .32) 68%, transparent); }
 .faction-drawer[open] summary { transform: translateX(10px); }
 .faction-drawer[open] summary::before { transform: scaleY(1); }
-.faction-drawer.is-closing summary { transform: translateX(0); }
-.faction-drawer.is-closing summary::before { transform: scaleY(0); }
+.faction-drawer.is-closing summary { transform: translateX(0); transition-duration: 320ms; }
+.faction-drawer.is-closing summary::before { transform: scaleY(0); transition-duration: 260ms; }
 .faction-drawer[open] .drawer-number { color: var(--ink); }
 .faction-drawer[open] .drawer-toggle, .faction-drawer[open] summary h2 { color: var(--accent); }
 
-.faction-file { max-height: 12000px; margin: 0 24px 34px 20px; padding: 27px 0 0; overflow: hidden; border-top: 1px solid var(--ink); transition: max-height 520ms cubic-bezier(.2, .76, .24, 1), margin 420ms ease, padding 420ms ease, border-color 220ms ease, opacity 220ms ease; }
+.faction-file { max-height: 12000px; margin: 0 24px 34px 20px; padding: 27px 0 0; overflow: hidden; border-top: 1px solid var(--ink); transition: max-height 620ms cubic-bezier(.2, .76, .24, 1), margin 500ms ease, padding 500ms ease, border-color 260ms ease, opacity 260ms ease; }
 .faction-pending-file { min-height: 94px; }
 .faction-pending-file p { margin: 0; color: var(--accent); font: 700 26px var(--display); }
-.faction-drawer.is-opening .faction-file { animation: faction-file-out 480ms cubic-bezier(.18, .8, .25, 1) both; }
-.faction-drawer.is-closing .faction-file { max-height: 0; margin-bottom: 0; padding-top: 0; border-top-color: transparent; opacity: 0; animation: faction-file-return 360ms ease-in both; }
+.faction-drawer.is-opening .faction-file { animation: faction-file-out 600ms cubic-bezier(.18, .8, .25, 1) both; }
+.faction-drawer.is-closing .faction-file { max-height: 0; margin-bottom: 0; padding-top: 0; border-top-color: transparent; opacity: 0; transition-duration: 400ms, 340ms, 340ms, 220ms, 220ms; animation: faction-file-return 360ms ease-in both; }
 .faction-file-lead { display: grid; grid-template-columns: minmax(200px, .45fr) minmax(480px, 1.55fr); gap: 42px; align-items: end; padding-bottom: 30px; }
 .faction-emblem { display: grid; width: min(100%, 220px); aspect-ratio: 1; place-items: center; margin: 0; padding: 17px; border: 1px solid var(--ink); background: rgba(229, 224, 213, .38); }
 .faction-emblem img { display: block; width: 100%; height: 100%; object-fit: contain; }

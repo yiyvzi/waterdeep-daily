@@ -58,7 +58,7 @@ a.is-link-activating::before { content: ""; position: absolute; right: 0; bottom
 }
 .top-nav a:hover::after,
 .top-nav .is-active::after { transform: scaleX(1); }
-.menu-button { justify-self: end; border: 0; color: var(--ink); background: none; font: inherit; cursor: pointer; }
+.menu-button { display: none; }
 
 .masthead { padding: 34px 0 20px; text-align: center; }
 .masthead-rule { height: 4px; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); }
@@ -1000,11 +1000,11 @@ a:focus-visible {
   body { animation: page-arrival 280ms cubic-bezier(.2, .7, .25, 1) both; }
   body.is-page-leaving { pointer-events: none; animation: page-departure 170ms ease-in both; }
   body.is-page-leaving.is-link-page-leaving { overflow: hidden; animation: none; }
-  body.is-link-page-leaving .page-shell { animation: archive-link-departure 360ms cubic-bezier(.5, 0, .72, .32) both; transform-origin: center; }
+  body.is-link-page-leaving .page-shell { animation: archive-link-departure 440ms cubic-bezier(.5, 0, .72, .32) both; transform-origin: center; }
   body.is-archive-link-arrival { overflow: hidden; animation: none; }
-  body.is-archive-link-arrival .page-shell { animation: archive-link-arrival 440ms cubic-bezier(.16, .82, .25, 1) both; transform-origin: center; }
+  body.is-archive-link-arrival .page-shell { animation: archive-link-arrival 520ms cubic-bezier(.16, .82, .25, 1) both; transform-origin: center; }
   body.is-person-page-leaving .page-shell { animation: dossier-leave 170ms cubic-bezier(.55, 0, 1, .45) both; transform-origin: center top; }
-  body.is-link-page-leaving.is-person-page-leaving .page-shell { animation: archive-link-departure 360ms cubic-bezier(.5, 0, .72, .32) both; transform-origin: center; }
+  body.is-link-page-leaving.is-person-page-leaving .page-shell { animation: archive-link-departure 440ms cubic-bezier(.5, 0, .72, .32) both; transform-origin: center; }
   :is(.person-drawer, .place-drawer, .faction-drawer, .event-drawer).is-linked-target[open] > summary { animation: linked-dossier-arrival 680ms cubic-bezier(.16, .82, .25, 1) both; }
   body.is-page-leaving.is-archive-to-paper-leaving { animation: none; overflow: hidden; }
   body.is-archive-to-paper-leaving .page-shell { animation: archive-to-paper-fold 430ms cubic-bezier(.55, 0, .74, .35) both; transform-origin: center; }
@@ -1203,7 +1203,6 @@ a:focus-visible {
 }
 @media (max-width: 430px) {
   .top-nav { gap: 10px; font-size: 11px; letter-spacing: .04em; white-space: nowrap; }
-  .menu-button { font-size: 11px; white-space: nowrap; }
   .lead-head h2 { font-size: 54px; }
   .lead-note { display: none; }
   .briefs { grid-template-columns: 52px 1fr; }

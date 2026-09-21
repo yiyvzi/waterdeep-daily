@@ -9,13 +9,14 @@
 .event-edition-line a { color: var(--ink); font-weight: 900; letter-spacing: .04em; }
 .event-edition-line > a:first-child { text-align: left; }
 .event-edition-line .next-register { width: 100%; color: var(--accent); text-align: right; }
+.event-edition-line .next-register[aria-disabled="true"] { color: var(--muted); }
 .event-edition-line p { color: var(--muted); font: 13px var(--font-ui); letter-spacing: .025em; }
 
 .event-drawers { padding-bottom: 90px; border-top: 4px solid var(--ink); }
 .event-drawer { border-bottom: 1px solid var(--rule); }
-.event-drawer summary { position: relative; display: grid; grid-template-columns: 128px minmax(300px, 1.25fr) 1fr auto; gap: 24px; align-items: center; min-height: 91px; padding: 18px 20px 18px 0; cursor: pointer; list-style: none; transition: transform 340ms cubic-bezier(.18, .8, .25, 1); }
+.event-drawer summary { position: relative; display: grid; grid-template-columns: 128px minmax(300px, 1.25fr) 1fr auto; gap: 24px; align-items: center; min-height: 91px; padding: 18px 20px 18px 0; cursor: pointer; list-style: none; transition: transform 420ms cubic-bezier(.18, .8, .25, 1); }
 .event-drawer summary::-webkit-details-marker { display: none; }
-.event-drawer summary::before { content: ""; position: absolute; top: -4px; bottom: 0; left: -10px; width: 5px; background: var(--accent); transform: scaleY(0); transform-origin: center; transition: transform 260ms ease; }
+.event-drawer summary::before { content: ""; position: absolute; top: -4px; bottom: 0; left: -10px; width: 5px; background: var(--accent); transform: scaleY(0); transform-origin: center; transition: transform 320ms ease; }
 .drawer-number { color: var(--accent); font: 700 15px var(--font-ui); letter-spacing: .06em; transition: color 200ms ease; }
 .drawer-toggle { color: var(--muted); font: 13px var(--font-ui); white-space: nowrap; transition: color 200ms ease; }
 .event-drawer summary h2 { margin: 0; font-size: 32px; line-height: 1; letter-spacing: -.06em; transition: color 200ms ease; }
@@ -23,14 +24,14 @@
 .event-drawer[open] { border-bottom-color: var(--ink); background: linear-gradient(90deg, rgba(229, 224, 213, .88), rgba(229, 224, 213, .32) 68%, transparent); }
 .event-drawer[open] summary { transform: translateX(10px); }
 .event-drawer[open] summary::before { transform: scaleY(1); }
-.event-drawer.is-closing summary { transform: translateX(0); }
-.event-drawer.is-closing summary::before { transform: scaleY(0); }
+.event-drawer.is-closing summary { transform: translateX(0); transition-duration: 320ms; }
+.event-drawer.is-closing summary::before { transform: scaleY(0); transition-duration: 260ms; }
 .event-drawer[open] .drawer-number { color: var(--ink); }
 .event-drawer[open] .drawer-toggle, .event-drawer[open] summary h2 { color: var(--accent); }
 
-.event-file { max-height: 12000px; margin: 0 24px 34px 20px; padding: 27px 0 0; overflow: hidden; border-top: 1px solid var(--ink); transition: max-height 520ms cubic-bezier(.2, .76, .24, 1), margin 420ms ease, padding 420ms ease, border-color 220ms ease, opacity 220ms ease; }
-.event-drawer.is-opening .event-file { animation: event-file-out 480ms cubic-bezier(.18, .8, .25, 1) both; }
-.event-drawer.is-closing .event-file { max-height: 0; margin-bottom: 0; padding-top: 0; border-top-color: transparent; opacity: 0; animation: event-file-return 360ms ease-in both; }
+.event-file { max-height: 12000px; margin: 0 24px 34px 20px; padding: 27px 0 0; overflow: hidden; border-top: 1px solid var(--ink); transition: max-height 620ms cubic-bezier(.2, .76, .24, 1), margin 500ms ease, padding 500ms ease, border-color 260ms ease, opacity 260ms ease; }
+.event-drawer.is-opening .event-file { animation: event-file-out 600ms cubic-bezier(.18, .8, .25, 1) both; }
+.event-drawer.is-closing .event-file { max-height: 0; margin-bottom: 0; padding-top: 0; border-top-color: transparent; opacity: 0; transition-duration: 400ms, 340ms, 340ms, 220ms, 220ms; animation: event-file-return 360ms ease-in both; }
 .event-file-lead { display: grid; grid-template-columns: minmax(180px, .42fr) minmax(480px, 1.58fr); gap: 42px; align-items: end; padding-bottom: 30px; }
 .event-case-mark { display: grid; width: min(100%, 210px); aspect-ratio: 1; place-content: center; border-top: 4px solid var(--ink); border-bottom: 3px double var(--ink); color: var(--accent); text-align: center; }
 .event-case-mark span { font: 700 60px / .78 var(--display); letter-spacing: -.08em; }
