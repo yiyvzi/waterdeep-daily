@@ -1001,31 +1001,38 @@ a:focus-visible {
   body.is-page-leaving { pointer-events: none; animation: page-departure 170ms ease-in both; }
   body.is-page-leaving.is-link-page-leaving { overflow: hidden; animation: none; }
   body.is-link-page-leaving .page-shell { animation: archive-link-departure 440ms cubic-bezier(.5, 0, .72, .32) both; transform-origin: center; }
-  body.is-archive-link-arrival { overflow: hidden; animation: none; }
+  body.is-archive-link-arrival { overflow-x: hidden; animation: none; }
   body.is-archive-link-arrival .page-shell { animation: archive-link-arrival 520ms cubic-bezier(.16, .82, .25, 1) both; transform-origin: center; }
-  body.is-person-page-leaving .page-shell { animation: dossier-leave 170ms cubic-bezier(.55, 0, 1, .45) both; transform-origin: center top; }
-  body.is-link-page-leaving.is-person-page-leaving .page-shell { animation: archive-link-departure 440ms cubic-bezier(.5, 0, .72, .32) both; transform-origin: center; }
+  body.is-page-leaving.is-treasury-leaving { overflow: hidden; animation: none; }
+  body.is-treasury-leaving .page-shell { animation: treasury-window-close 540ms cubic-bezier(.28, .62, .4, 1) both; transform-origin: center; }
+  body.is-treasury-leaving::before, body.is-treasury-leaving::after { content: ""; position: fixed; z-index: 10; top: 0; bottom: 0; width: 50vw; background: var(--paper-deep); box-shadow: 0 0 24px rgba(20, 19, 16, .08); pointer-events: none; }
+  body.is-treasury-leaving::before { left: 0; animation: treasury-window-panel-left 540ms cubic-bezier(.28, .62, .4, 1) both; }
+  body.is-treasury-leaving::after { right: 0; animation: treasury-window-panel-right 540ms cubic-bezier(.28, .62, .4, 1) both; }
+  body.is-treasury-arrival { overflow-x: hidden; animation: none; }
+  body.is-treasury-arrival .page-shell { animation: treasury-window-open 580ms cubic-bezier(.16, .82, .25, 1) both; transform-origin: center; }
   :is(.person-drawer, .place-drawer, .faction-drawer, .event-drawer).is-linked-target[open] > summary { animation: linked-dossier-arrival 680ms cubic-bezier(.16, .82, .25, 1) both; }
-  body.is-page-leaving.is-archive-to-paper-leaving { animation: none; overflow: hidden; }
-  body.is-archive-to-paper-leaving .page-shell { animation: archive-to-paper-fold 430ms cubic-bezier(.55, 0, .74, .35) both; transform-origin: center; }
-  body.is-page-leaving.is-paper-to-archive-leaving { animation: none; overflow: hidden; }
-  body.is-paper-to-archive-leaving .page-shell { animation: newspaper-sheet-fold 430ms cubic-bezier(.55, 0, .74, .35) both; transform-origin: center; }
-  body.is-paper-to-archive-leaving .edition-ticker, body.is-paper-to-archive-leaving .lead-story { animation: newspaper-content-fold 300ms cubic-bezier(.55, 0, .74, .35) both; transform-origin: top; }
-  body.is-paper-to-archive-leaving .masthead { animation: newspaper-to-archive-fold 360ms cubic-bezier(.55, 0, .74, .35) 65ms both; transform-origin: center; }
+  body.is-page-leaving.is-archive-leaving, body.is-page-leaving.is-paper-leaving { animation: none; overflow: hidden; }
+  body.is-archive-leaving .page-shell { animation: archive-sheet-close 430ms cubic-bezier(.55, 0, .74, .35) both; transform-origin: center; }
+  body.is-paper-leaving .page-shell { animation: newspaper-sheet-close 430ms cubic-bezier(.55, 0, .74, .35) both; transform-origin: center; }
+  body.is-paper-leaving .edition-ticker, body.is-paper-leaving .lead-story { animation: newspaper-content-fold 300ms cubic-bezier(.55, 0, .74, .35) both; transform-origin: top; }
+  body.is-paper-leaving .masthead { animation: newspaper-masthead-close 360ms cubic-bezier(.55, 0, .74, .35) 65ms both; transform-origin: center; }
   body.is-newspaper-arrival { animation: none; }
   body.is-newspaper-arrival .masthead { animation: newspaper-masthead-open 440ms cubic-bezier(.16, .82, .25, 1) both; transform-origin: center; }
   body.is-newspaper-arrival .edition-ticker { animation: newspaper-columns-open 330ms cubic-bezier(.2, .8, .28, 1) 210ms both; transform-origin: top; }
   body.is-newspaper-arrival .lead-story { animation: newspaper-columns-open 420ms cubic-bezier(.2, .8, .28, 1) 260ms both; transform-origin: top; }
   @keyframes page-arrival { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: translateY(0); } }
   @keyframes page-departure { to { opacity: 0; transform: translateY(-5px); } }
-  @keyframes dossier-leave { to { opacity: 0; transform: translateY(-18px) scaleY(.94); } }
   @keyframes archive-link-departure { 0% { clip-path: inset(0 0 0 0); opacity: 1; transform: translateY(0) scaleX(1); } 56% { clip-path: inset(10% 0 10% 0); opacity: 1; transform: translateY(-2px) scaleX(.985); } 100% { clip-path: inset(49% 0 49% 0); opacity: 0; transform: translateY(-7px) scaleX(.9); } }
   @keyframes archive-link-arrival { 0% { clip-path: inset(49% 0 49% 0); opacity: 0; transform: translateY(7px) scaleX(.9); } 56% { clip-path: inset(10% 0 10% 0); opacity: 1; transform: translateY(2px) scaleX(.985); } 100% { clip-path: inset(0 0 0 0); opacity: 1; transform: translateY(0) scaleX(1); } }
+  @keyframes treasury-window-close { from { clip-path: inset(0 0 0 0); opacity: 1; filter: brightness(1); transform: perspective(1200px) scaleX(1); } to { clip-path: inset(0 49.5% 0 49.5%); opacity: 0; filter: brightness(.9); transform: perspective(1200px) scaleX(.78); } }
+  @keyframes treasury-window-open { 0% { clip-path: inset(0 49.5% 0 49.5%); opacity: 0; filter: brightness(.88); transform: perspective(1200px) scaleX(.78); } 48% { clip-path: inset(0 12% 0 12%); opacity: 1; filter: brightness(.96); transform: perspective(1200px) scaleX(.98); } 100% { clip-path: inset(0 0 0 0); opacity: 1; filter: brightness(1); transform: perspective(1200px) scaleX(1); } }
+  @keyframes treasury-window-panel-left { from { transform: translateX(-102%); } to { transform: translateX(0); } }
+  @keyframes treasury-window-panel-right { from { transform: translateX(102%); } to { transform: translateX(0); } }
   @keyframes linked-dossier-arrival { 0% { background: rgba(154, 70, 47, 0); box-shadow: inset 0 0 0 0 rgba(154, 70, 47, 0); transform: translateX(-14px); } 42% { background: rgba(154, 70, 47, .11); box-shadow: inset 5px 0 0 var(--accent); transform: translateX(12px); } 100% { background: rgba(154, 70, 47, 0); box-shadow: inset 0 0 0 0 rgba(154, 70, 47, 0); transform: translateX(10px); } }
-  @keyframes archive-to-paper-fold { 0% { clip-path: inset(0 0 0 0); opacity: 1; transform: scaleX(1); } 68% { clip-path: inset(41% 0 41% 0); opacity: 1; transform: scaleX(.96); } 100% { clip-path: inset(49.5% 0 49.5% 0); opacity: 0; transform: scaleX(.62); } }
-  @keyframes newspaper-sheet-fold { 0% { clip-path: inset(0 0 0 0); opacity: 1; transform: scaleX(1); } 65% { clip-path: inset(39% 0 39% 0); opacity: 1; transform: scaleX(.96); } 100% { clip-path: inset(49.5% 0 49.5% 0); opacity: 0; transform: scaleX(.62); } }
+  @keyframes archive-sheet-close { 0% { clip-path: inset(0 0 0 0); opacity: 1; transform: scaleX(1); } 68% { clip-path: inset(41% 0 41% 0); opacity: 1; transform: scaleX(.96); } 100% { clip-path: inset(49.5% 0 49.5% 0); opacity: 0; transform: scaleX(.62); } }
+  @keyframes newspaper-sheet-close { 0% { clip-path: inset(0 0 0 0); opacity: 1; transform: scaleX(1); } 65% { clip-path: inset(39% 0 39% 0); opacity: 1; transform: scaleX(.96); } 100% { clip-path: inset(49.5% 0 49.5% 0); opacity: 0; transform: scaleX(.62); } }
   @keyframes newspaper-content-fold { to { clip-path: inset(0 0 100% 0); opacity: 0; transform: translateY(-20px); } }
-  @keyframes newspaper-to-archive-fold { 0% { clip-path: inset(0 0 0 0); opacity: 1; transform: scaleX(1); } 100% { clip-path: inset(48% 0 48% 0); opacity: .15; transform: scaleX(.62); } }
+  @keyframes newspaper-masthead-close { 0% { clip-path: inset(0 0 0 0); opacity: 1; transform: scaleX(1); } 100% { clip-path: inset(48% 0 48% 0); opacity: .15; transform: scaleX(.62); } }
   @keyframes newspaper-masthead-open { from { clip-path: inset(48% 0 48% 0); opacity: .3; transform: scaleX(.62); } to { clip-path: inset(0 0 0 0); opacity: 1; transform: scaleX(1); } }
   @keyframes newspaper-columns-open { from { clip-path: inset(0 0 100% 0); transform: translateY(-12px); } to { clip-path: inset(0 0 0 0); transform: translateY(0); } }
 }

@@ -16,17 +16,17 @@
 .artifact-heading div span { margin-left: 12px; color: var(--accent); font: 700 var(--size-meta) var(--font-ui); letter-spacing: .15em; }
 .artifact-heading > p:last-child { justify-self: end; margin: 0 0 2px; color: var(--muted); font: var(--size-meta) var(--font-ui); letter-spacing: .04em; }
 
-.artifact-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); grid-auto-rows: clamp(52px, 4.25vw, 68px); grid-auto-flow: dense; gap: clamp(12px, 1.35vw, 22px); }
+.artifact-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); grid-auto-rows: clamp(42px, 3.25vw, 54px); grid-auto-flow: dense; gap: clamp(10px, 1vw, 18px); }
 .artifact { min-width: 0; min-height: 0; }
 .artifact figure { display: grid; grid-template-rows: minmax(0, 1fr) auto; gap: 8px; width: 100%; height: 100%; margin: 0; }
 .artifact img { display: block; width: 100%; height: 100%; object-fit: contain; background: var(--paper-deep); }
-.artifact figcaption { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: baseline; min-width: 0; padding-top: 7px; border-top: 1px solid var(--rule); }
+.artifact figcaption { position: static; display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: baseline; min-width: 0; padding-top: 7px; border-top: 1px solid var(--rule); color: var(--ink); }
 .artifact figcaption span { color: var(--accent); font: 700 10px var(--font-ui); letter-spacing: .12em; text-transform: uppercase; }
 .artifact figcaption h3 { margin: 0; font: 700 clamp(19px, 1.6vw, 27px) / .95 var(--display); letter-spacing: -.045em; text-align: right; }
-.artifact--token { grid-column: span 3; grid-row: span 5; }
-.artifact--prop { grid-column: span 4; grid-row: span 6; }
-.artifact--handout { grid-column: span 3; grid-row: span 9; }
-.artifact--map { grid-column: span 6; grid-row: span 7; }
+.artifact--token { grid-column: span 2; grid-row: span 4; }
+.artifact--prop { grid-column: span 3; grid-row: span 4; }
+.artifact--handout { grid-column: span 3; grid-row: span 6; }
+.artifact--map { grid-column: span 4; grid-row: span 5; }
 
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
   .artifact img { transition: transform 280ms cubic-bezier(.2, .72, .28, 1), filter 180ms ease; }
@@ -37,11 +37,11 @@
 
 @media (max-width: 900px) {
   .artifact-section { padding-top: 58px; }
-  .artifact-grid { grid-template-columns: repeat(8, minmax(0, 1fr)); grid-auto-rows: clamp(48px, 6vw, 62px); }
+  .artifact-grid { grid-template-columns: repeat(8, minmax(0, 1fr)); grid-auto-rows: clamp(44px, 5vw, 54px); }
   .artifact--token { grid-column: span 2; grid-row: span 4; }
-  .artifact--prop { grid-column: span 3; grid-row: span 5; }
-  .artifact--handout { grid-column: span 2; grid-row: span 7; }
-  .artifact--map { grid-column: span 4; grid-row: span 6; }
+  .artifact--prop { grid-column: span 3; grid-row: span 4; }
+  .artifact--handout { grid-column: span 2; grid-row: span 6; }
+  .artifact--map { grid-column: span 4; grid-row: span 5; }
 }
 
 @media (max-width: 680px) {

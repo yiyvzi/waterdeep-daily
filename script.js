@@ -18,20 +18,27 @@ document.querySelectorAll('a[href]').forEach((link) => {
     if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     event.preventDefault();
     const destination = link.getAttribute('href').split('#')[0];
-    const isArchivePage = ['archive.html', 'tailor.html', 'tailor-tabletop.html', 'people.html', 'people-volume-two.html', 'people-volume-three.html', 'places.html', 'places-volume-two.html', 'places-volume-three.html', 'factions.html', 'factions-guilds.html', 'factions-secret-societies.html', 'factions-criminal-networks.html', 'events.html', 'events-volume-two.html', 'events-volume-three.html'].includes(destination);
-    const isDossierPage = ['people.html', 'people-volume-two.html', 'people-volume-three.html', 'places.html', 'places-volume-two.html', 'places-volume-three.html', 'factions.html', 'factions-guilds.html', 'factions-secret-societies.html', 'factions-criminal-networks.html', 'events.html', 'events-volume-two.html', 'events-volume-three.html'].includes(destination);
-    const isArchiveToPaper = destination === 'index.html' && document.querySelector('.archive-shell');
-    const isPaperToArchive = destination === 'archive.html' && document.querySelector('.masthead');
-    if (isArchivePage) sessionStorage.setItem('archive-transition', 'archive-entry');
-    if (isArchiveToPaper) sessionStorage.setItem('archive-transition', 'paper-entry');
+    const isArchivePage = ['archive.html', 'people.html', 'people-volume-two.html', 'people-volume-three.html', 'places.html', 'places-volume-two.html', 'places-volume-three.html', 'factions.html', 'factions-guilds.html', 'factions-secret-societies.html', 'factions-criminal-networks.html', 'events.html', 'events-volume-two.html', 'events-volume-three.html'].includes(destination);
+    const isTreasuryDetailPage = /^tailor-[\w-]+\.html$/.test(destination);
+    const sourceSection = document.querySelector('.tailor-page, .treasury-detail-page') ? 'treasury'
+      : document.querySelector('.masthead') ? 'paper' : 'archive';
+    const destinationSection = destination === 'index.html' ? 'paper'
+      : destination === 'tailor.html' || isTreasuryDetailPage ? 'treasury'
+      : destination === 'archive.html' ? 'archive' : null;
+    const isSectionSwitch = Boolean(destinationSection && sourceSection !== destinationSection);
+    const isTreasuryCollectionSwitch = sourceSection === 'treasury' && (
+      (document.body.classList.contains('tailor-page') && isTreasuryDetailPage)
+      || (document.body.classList.contains('treasury-detail-page') && destination === 'tailor.html')
+    );
+    const departureSection = isSectionSwitch || isTreasuryCollectionSwitch ? sourceSection : null;
+    if (destinationSection === 'treasury') sessionStorage.setItem('archive-transition', 'treasury-entry');
+    else if (isArchivePage) sessionStorage.setItem('archive-transition', 'archive-entry');
+    if (destinationSection === 'paper') sessionStorage.setItem('archive-transition', 'paper-entry');
+    if (departureSection === 'treasury') document.body.classList.remove('is-treasury-arrival');
     document.body.classList.add('is-page-leaving');
-    document.body.classList.add('is-link-page-leaving');
-    if (isDossierPage) document.body.classList.add('is-person-page-leaving');
-    if (isArchiveToPaper) document.body.classList.add('is-archive-to-paper-leaving');
-    if (isPaperToArchive) document.body.classList.add('is-paper-to-archive-leaving');
-    const hasArchivePaperTransition = isArchiveToPaper || isPaperToArchive;
+    document.body.classList.add(departureSection ? `is-${departureSection}-leaving` : 'is-link-page-leaving');
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const departureDuration = reducedMotion ? 1 : hasArchivePaperTransition ? 430 : 440;
+    const departureDuration = reducedMotion ? 1 : departureSection === 'treasury' ? 540 : departureSection ? 430 : 440;
     window.setTimeout(() => { window.location.href = link.href; }, departureDuration);
   });
 });
@@ -45,6 +52,11 @@ if (archiveTransition === 'archive-entry') {
   if (document.body.classList.contains('factions-page')) document.body.classList.add('is-faction-dossier-arrival');
   if (document.body.classList.contains('events-page')) document.body.classList.add('is-event-dossier-arrival');
   if (document.querySelector('.archive-shell')) document.body.classList.add('is-archive-arrival');
+  sessionStorage.removeItem('archive-transition');
+}
+
+if (archiveTransition === 'treasury-entry') {
+  document.body.classList.add('is-treasury-arrival');
   sessionStorage.removeItem('archive-transition');
 }
 

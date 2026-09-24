@@ -31,8 +31,11 @@
 .person-drawer.is-opening .person-file { animation: archive-file-out 600ms cubic-bezier(.18, .8, .25, 1) both; }
 .person-drawer.is-closing .person-file { max-height: 0; margin-bottom: 0; padding-top: 0; border-top-color: transparent; opacity: 0; transition-duration: 400ms, 340ms, 340ms, 220ms, 220ms; animation: archive-file-return 360ms ease-in both; }
 .dossier-lead { display: grid; grid-template-columns: minmax(260px, .72fr) minmax(480px, 1.28fr); gap: 42px; padding-bottom: 30px; }
+.person-brief .dossier-lead { grid-template-columns: clamp(320px, 35vw, 520px) minmax(0, 1fr); gap: 36px; }
 .dossier-lead figure { position: relative; min-height: 390px; margin: 0; overflow: hidden; border-bottom: 3px double var(--ink); background: var(--ink); }
 .dossier-lead figure img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.82) sepia(.08) contrast(1.04); }
+.person-brief .dossier-lead figure { min-height: 0; aspect-ratio: 1; }
+.person-brief .dossier-lead figure img { object-fit: cover; object-position: center top; }
 .dossier-lead figcaption { position: absolute; right: 7px; bottom: 7px; padding: 5px 7px; color: var(--paper); background: rgba(28, 27, 25, .9); font: 10px var(--font-ui); letter-spacing: .04em; }
 .file-identity { margin: 0 0 11px; color: var(--accent); font: 700 12px var(--font-ui); letter-spacing: .055em; }
 .dossier-lead h3 { max-width: 790px; margin: 0 0 20px; font-size: clamp(34px, 3.4vw, 54px); line-height: .98; letter-spacing: -.07em; }
@@ -43,6 +46,10 @@
 .identity-register div:last-child { border-right: 0; }
 .identity-register dt, .dossier-section > h4, .dossier-note h4 { margin: 0; color: var(--accent); font: 700 11px var(--font-ui); letter-spacing: .075em; }
 .identity-register dd { margin: 6px 0 0; color: #45423c; font-size: 14px; line-height: 1.45; }
+.person-brief .identity-register { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.known-information { margin-top: 28px; padding-top: 17px; border-top: 1px solid var(--ink); }
+.known-information h4 { margin: 0 0 11px; color: var(--accent); font: 700 11px var(--font-ui); letter-spacing: .075em; }
+.known-information p { max-width: 760px; margin: 0; color: #37342f; font-size: 15px; line-height: 1.82; }
 
 .dossier-section { padding: 26px 0 29px; border-top: 1px solid var(--ink); }
 .dossier-section > h4 { margin-bottom: 17px; }
@@ -91,13 +98,16 @@
 }
 @media (max-width: 900px) {
   .dossier-lead, .dossier-ledger, .biography-layout { grid-template-columns: 1fr; gap: 26px; }
+  .person-brief .dossier-lead { grid-template-columns: 1fr; }
+  .person-brief .dossier-lead figure { width: min(100%, 520px); }
   .person-drawer summary { grid-template-columns: 100px 1.2fr 1fr; gap: 15px; }.drawer-toggle { display: none; }
   .dossier-lead figure { min-height: 300px; }.identity-register { grid-template-columns: repeat(2, 1fr); }.identity-register div:nth-child(2) { border-right: 0; }
   .bio-brief { padding-right: 0; border-right: 0; }.ability-columns { gap: 26px; }.ability-columns > div + div { padding-left: 0; border-left: 0; }
 }
 @media (max-width: 680px) {
+  .person-brief .dossier-lead figure { width: 100%; }
   .person-masthead h1 { font-size: 18vw; }.person-edition-line { grid-template-columns: 1fr 1fr; }.person-edition-line p:nth-child(2) { display: none; }
   .person-drawer summary { grid-template-columns: 82px 1fr; min-height: auto; padding: 20px 0; }.person-drawer summary p { grid-column: 2; }.person-drawer summary h2 { font-size: 28px; }
-  .person-file { margin: 0 0 24px 12px; }.dossier-lead h3 { font-size: 38px; }.identity-register { grid-template-columns: 1fr; }.identity-register div, .identity-register div + div { padding-left: 0; border-right: 0; border-bottom: 1px solid var(--rule); }
+  .person-file { margin: 0 0 24px 12px; }.dossier-lead h3 { font-size: 38px; }.identity-register, .person-brief .identity-register { grid-template-columns: 1fr; }.identity-register div, .identity-register div + div { padding-left: 0; border-right: 0; border-bottom: 1px solid var(--rule); }
   .ability-columns, .campaign-grid { grid-template-columns: 1fr; }.campaign-grid > div { padding: 0; border-right: 0; border-bottom: 1px solid var(--rule); }
 }
