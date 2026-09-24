@@ -1086,7 +1086,7 @@ a:focus-visible {
   .site-header { grid-template-columns: 1fr auto; }
   .edition-stamp { display: none; }
   .top-nav { gap: 14px; }
-  .masthead h1 { font-size: 18vw; }
+  .masthead h1 { font-size: 13.2vw; }
   .masthead-edition { display: none; }
   .masthead-bottom { grid-template-columns: 1fr 1fr; }
   .edition-details { display: none; }

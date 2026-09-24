@@ -18,7 +18,7 @@ document.querySelectorAll('a[href]').forEach((link) => {
     if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     event.preventDefault();
     const destination = link.getAttribute('href').split('#')[0];
-    const isArchivePage = ['archive.html', 'tailor.html', 'people.html', 'people-volume-two.html', 'people-volume-three.html', 'places.html', 'places-volume-two.html', 'places-volume-three.html', 'factions.html', 'factions-guilds.html', 'factions-secret-societies.html', 'factions-criminal-networks.html', 'events.html', 'events-volume-two.html', 'events-volume-three.html'].includes(destination);
+    const isArchivePage = ['archive.html', 'tailor.html', 'tailor-tabletop.html', 'people.html', 'people-volume-two.html', 'people-volume-three.html', 'places.html', 'places-volume-two.html', 'places-volume-three.html', 'factions.html', 'factions-guilds.html', 'factions-secret-societies.html', 'factions-criminal-networks.html', 'events.html', 'events-volume-two.html', 'events-volume-three.html'].includes(destination);
     const isDossierPage = ['people.html', 'people-volume-two.html', 'people-volume-three.html', 'places.html', 'places-volume-two.html', 'places-volume-three.html', 'factions.html', 'factions-guilds.html', 'factions-secret-societies.html', 'factions-criminal-networks.html', 'events.html', 'events-volume-two.html', 'events-volume-three.html'].includes(destination);
     const isArchiveToPaper = destination === 'index.html' && document.querySelector('.archive-shell');
     const isPaperToArchive = destination === 'archive.html' && document.querySelector('.masthead');

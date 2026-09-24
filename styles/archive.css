@@ -63,7 +63,7 @@
 }
 
 @media (max-width: 680px) {
-  .archive-masthead h1 { font-size: 17vw; }
+  .archive-masthead h1 { font-size: 13.2vw; }
   .archive-edition-line { grid-template-columns: 1fr 1fr; }
   .archive-edition-line p:nth-child(2) { display: none; }
   .archive-status { grid-template-columns: 105px 1fr; }
